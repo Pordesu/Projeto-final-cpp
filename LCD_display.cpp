@@ -3,7 +3,7 @@
 
 void LCD_display::EN_pulse(){
     PORTD |= (1<<EN);
-    _delay_ms(5);
+    _delay_ms(1);
     PORTD &= ~(1<<EN);
 }
 
@@ -20,7 +20,6 @@ void LCD_display::cmd(unsigned char code, bool is_Data){
     EN_pulse();
     PORTD = (PORTD & 0x0F) | code << 4; //Envia os 4 LSB para o display
     EN_pulse();
-    _delay_ms(2);
 }
 
 LCD_display::LCD_display(){
@@ -31,7 +30,7 @@ LCD_display::LCD_display(){
     cmd(0x28); //Inicializa como modo 4 bits
     cmd(0x0E); //Liga display com cursor desligado
     cmd(0x01); //limpa o display
-    _delay_ms(5);
+    _delay_ms(2);
     cmd(0x80);
 }   
 
@@ -41,7 +40,15 @@ void LCD_display::Write(char data){
 
 
 void LCD_display::Write(int data){
-    char aux1, aux2;
+    int aux1, aux2, aux3, aux4;
+    if (data < 0){
+        cmd(45, true);
+        data = data*-1;
+    }
+    else{
+        cmd(32, true); 
+    }
+
     aux1 = 48+(data/10);
     aux2 = 48+(data%10);
     cmd(aux1, true);

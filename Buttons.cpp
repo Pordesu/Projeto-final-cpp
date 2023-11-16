@@ -1,42 +1,42 @@
 #include "Buttons.h"
 
 Buttons::Buttons(){
-    DDRD &= ~(1<<PD2); // Habilita para  modo de leitura os pinos digitais (2, 3, 5 e 6)
-    DDRD &= ~(1<<PD3);
-    DDRD &= ~(1<<PD5);
-    DDRD &= ~(1<<PD6);
+    DDRB &= ~(1<<SPEED_UP); // Habilita para  modo de leitura os pinos digitais (2, 3, 5 e 6)
+    DDRB &= ~(1<<SPEED_DOWN);
+    DDRB &= ~(1<<SPEED_TICK_UP);
+    DDRB &= ~(1<<SPEED_TICK_DOWN);
 }
 
-bool Buttons::Read_button(char pin){
+bool Buttons::read_button(char pin){
     switch(pin){        //Switch Case para identificação de qual dos 4 botões foi pressionado
         case SPEED_UP: 
-            if (PIND & (1<<PD2)){
-                _delay_ms(50);  //Delay para mitigar o bouncing do botão
+            if (PINB & (1<<SPEED_UP)){
+                _delay_ms(BTN_DELAY);  //Delay para mitigar o bouncing do botão
                 return true;
             }
             else {
                 return false;
             }
         case SPEED_DOWN:
-            if (PIND & (1<<PD3)){
-                _delay_ms(50);
+            if (PINB & (1<<SPEED_DOWN)){
+                _delay_ms(BTN_DELAY);
                 return true;
             }
             else {
                 return false;
             }
-        case TICK_SPEED_UP:
-            if (PIND & (1<<PD5)){
-                _delay_ms(50);
+        case SPEED_TICK_UP:
+            if (PINB & (1<<SPEED_TICK_UP)){
+                _delay_ms(BTN_DELAY);
                 return true;
             }
             else {
                 return false;
             }
 
-        case TICK_SPEED_DOWN:
-            if (PIND & (1<<PD6)){
-                _delay_ms(50);
+        case SPEED_TICK_DOWN:
+            if (PINB & (1<<SPEED_TICK_DOWN)){
+                _delay_ms(BTN_DELAY);
                 return true;
             }
             else {
