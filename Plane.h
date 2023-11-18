@@ -8,7 +8,11 @@
 #define SPD_LMT 20
 #define SPD_T_LMT 10
 class Plane : private Axis_reader, Buttons, LCD_display{
-    private:
+    friend int get_axis_X(Plane* pln);
+    friend int get_axis_Y(Plane* pln);
+    friend int get_speed(Plane* pln);
+    friend int get_speed_tick(Plane* pln);
+        private:
         int axis_x, axis_y;
         int speed = 0;
         int speed_tick = 0;

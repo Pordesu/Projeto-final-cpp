@@ -1,5 +1,21 @@
 #include "Plane.h"
 
+int get_axis_X(Plane* pln){
+    return pln->axis_x;
+}
+
+int get_axis_Y(Plane* pln){
+    return pln->axis_y;
+}
+
+int get_speed(Plane* pln){
+    return pln->speed;
+}
+
+int get_speed_tick(Plane* pln){
+    return pln->speed_tick;
+}
+
 Plane::Plane():Buttons(),Axis_reader(),LCD_display(){
     set_cursor_position(0);
     Write('X'); Write(':');
@@ -69,6 +85,5 @@ void Plane::run(){
     update_speed_tick();
     update_speed();
     update_axis();
-    //update_queue();
     update_display();
 }
