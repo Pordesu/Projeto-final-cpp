@@ -12,7 +12,7 @@ class Node {
   public:
          
     Node(T dat, Node* nxt);
-    int getVal();
+    T getVal();
     Node* getNext();
     void setVal(T dat);
     void setNext(Node* nxt);
@@ -25,7 +25,7 @@ Node<T>::Node(T dat, Node<T>* nxt){
 }
 
 template <typename T>
-int Node<T>::getVal(){
+T Node<T>::getVal(){
      return val;
 }
 

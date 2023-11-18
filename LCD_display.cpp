@@ -1,5 +1,4 @@
 #include  "LCD_display.h"
-#include <string.h>
 
 void LCD_display::EN_pulse(){
     PORTD |= (1<<EN);
