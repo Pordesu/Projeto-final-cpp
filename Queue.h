@@ -4,16 +4,16 @@
 #include "Node.h"
 
 template <typename T>
-class Queue {
+class Queue {  //Classe da fila de eventos
     private:
-        Node<T>* head;
-        Node<T>* tail;
+        Node<T>* head; //Ponteiro para o  primeiro da fila
+        Node<T>* tail; //Ponteiro para o  último da fila
         int size;
     public: 
         Queue();
-        void clear();
-        void insert(T dat);
-        void remove_first();
+        void clear(); //Limpa a fila
+        void insert(T dat); //Insere na fila
+        void remove_first(); //Remove o primeiro da fila (mais antigo)
         Node<T>* get_head();
         Node<T>* get_tail();
         unsigned int get_size();

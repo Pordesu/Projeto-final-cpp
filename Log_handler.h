@@ -7,7 +7,7 @@
 #include "Plane.h"
 #include "Queue.h"
 
-class Log_handler{
+class Log_handler{  //Classe para lidar com a fila e escrita na UART do microcontrolador
     private:
         Queue<Event> Log;
         Plane past_pln;
@@ -18,6 +18,7 @@ class Log_handler{
         void uart_check_and_send();
 };
 
+//Funções de escrita da UART
 void UART_init(uint16_t ubrr);
 void UART_putc(unsigned char data);
 void UART_puts(char* s);

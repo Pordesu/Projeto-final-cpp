@@ -35,7 +35,7 @@ char UART_getc(void) //Lê um char da UART
     return UDR0;
 }
 
-ISR(USART_RX_vect){
+ISR(USART_RX_vect){ //Tratador de interrupção seta Received = true para escrita do log no pc
     Received = true;
 }
 
@@ -97,10 +97,10 @@ void Log_handler::update_log(Plane pln){
     past_pln = pln; //Atualização do past_pln
 }
 
-Event Log_handler::get_first(){
+Event Log_handler::get_first(){  //Retorna o primeiro Evento da fila
     return Log.get_head()->getVal();
 }
-void Log_handler::uart_check_and_send(){
+void Log_handler::uart_check_and_send(){ //Checa se foi recebido algo pela UART, se sim, retorna o log
     if(Received){
         for(int i=0; i<Log.get_size();i++){
             UART_puts(get_first().get_output());

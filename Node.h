@@ -4,7 +4,7 @@
 #include "new_del.h"
 
 template <typename T>
-class Node {
+class Node {  //Classe nodo da fila encadeada
 
     T val;
     Node* next;
