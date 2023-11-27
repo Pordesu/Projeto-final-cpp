@@ -7,4 +7,5 @@ class New_speedtick_ev : virtual public Event{
     public:
         New_speedtick_ev(int dat);
         char* get_output();
+        int get_timestamp();
 };

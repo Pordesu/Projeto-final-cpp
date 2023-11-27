@@ -7,4 +7,5 @@ class New_speed_ev : virtual public Event{
         public:
             New_speed_ev(int dat);
             char* get_output();
+            int get_timestamp();
 };

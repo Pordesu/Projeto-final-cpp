@@ -11,6 +11,7 @@ class Log_handler{  //Classe para lidar com a fila e escrita na UART do microcon
     private:
         Queue<Event> Log;
         Plane past_pln;
+        int init; // Variável para guardar o valor inicial do  tempo do microcontrolador
     public:
         Log_handler();
         void update_log(Plane pln);

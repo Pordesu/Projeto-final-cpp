@@ -7,4 +7,5 @@ class New_angle_ev : virtual public Event{
     public:
         New_angle_ev(char ax, int dat);
         char* get_output(); // Substitui o valor de dat para comparação de alteração nos valores e escreve em output = operation + char(dat)
+        int get_timestamp();
 };

@@ -23,3 +23,7 @@ char* New_angle_ev::get_output(){
     
     return output;
 }
+
+int  New_angle_ev::get_timestamp(){
+    return timestamp;
+}

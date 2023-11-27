@@ -1,5 +1,7 @@
 #include "Log_handler.h"
 #include <avr/interrupt.h>
+#include <avr/pgmspace.h>
+
 
 bool Received = false; //Variável global para interrupção
 
@@ -43,6 +45,7 @@ ISR(USART_RX_vect){ //Tratador de interrupção seta Received = true para escrit
 
 Log_handler::Log_handler(){
     UART_init(9600);
+    init = time(NULL); //Guarda o valor do tempo na inicialização
 }
 
 void Log_handler::update_log(Plane pln){
@@ -101,11 +104,25 @@ Event Log_handler::get_first(){  //Retorna o primeiro Evento da fila
     return Log.get_head()->getVal();
 }
 void Log_handler::uart_check_and_send(){ //Checa se foi recebido algo pela UART, se sim, retorna o log
+    int aux = 0;
+    int vaux[10];
     if(Received){
         for(int i=0; i<Log.get_size();i++){
+            UART_putc('/'); //Caractere para dividir cada evento, assim o hospedeiro pode identificar cada evento individualmente
             UART_puts(get_first().get_output());
+            aux = get_first().get_timestamp();
+            UART_putc('t'); UART_putc('s'); UART_putc(':'); // Timestamp
+            for(int i=0; i<10; i++){ //Como timestamp é em 32 bits, possui no máximo 10 digitos
+                vaux[9-i] = aux%10; //Dígito do inteiro
+                aux = aux/10; 
+            }
+            for(int i=0; i<10; i++){
+                UART_putc(vaux[i]);
+            }
             Log.remove_first();
     }
+    UART_putc('/');
     Received = false;
     }
+
 }

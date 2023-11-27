@@ -12,3 +12,6 @@ char* New_speedtick_ev::get_output(){
     return output;
 }
 
+int New_speedtick_ev::get_timestamp(){
+    return timestamp;
+}
