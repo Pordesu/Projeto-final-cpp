@@ -7,6 +7,7 @@ int main(){
    Log_handler log;
    while (1){
 	pln.run();
+   log.update_log(pln);
    log.uart_check_and_send();
    }
    return 0;

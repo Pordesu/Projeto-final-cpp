@@ -55,9 +55,15 @@ void Queue<T>::remove_first(){
 
 template <typename T>
 void Queue<T>::insert(T dat){
+    if (tail == 0){
+        head = new Node<T>(dat, head);
+        tail = head;
+    }
+    else{
     tail->setNext(new Node<T>(dat,0));
     tail = tail->getNext();
     size++;
+    }
 }
 
 template <typename T>

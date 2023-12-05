@@ -9,6 +9,8 @@
         "vector": "cpp",
         "hash_map": "cpp",
         "hash_set": "cpp",
-        "slist": "cpp"
+        "slist": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp"
     }
 }

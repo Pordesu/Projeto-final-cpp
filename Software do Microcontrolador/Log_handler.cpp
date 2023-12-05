@@ -111,7 +111,7 @@ void Log_handler::uart_check_and_send(){ //Checa se foi recebido algo pela UART,
             UART_putc('/'); //Caractere para dividir cada evento, assim o hospedeiro pode identificar cada evento individualmente
             UART_puts(get_first().get_output());
             aux = get_first().get_timestamp();
-            UART_putc('t'); UART_putc('s'); UART_putc(':'); // Timestamp
+            UART_putc(',');UART_putc('t'); UART_putc('s'); UART_putc(':'); // Timestamp
             for(int i=0; i<10; i++){ //Como timestamp é em 32 bits, possui no máximo 10 digitos
                 vaux[9-i] = aux%10; //Dígito do inteiro
                 aux = aux/10; 
