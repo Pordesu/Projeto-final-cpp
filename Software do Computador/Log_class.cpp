@@ -43,7 +43,7 @@ string Log_class::get_output_log(int month_a, int day_a, int month_b, int day_b)
         iterando = iterando->getNext();
     }
     hours = (max-min)/(60*60);  //Calcula as horas entre min e max
-    minutes = ((max-min)%(60))*60; //Calcula os minutos
+    minutes = (max-min-hours*(60*60))/60; //Calcula os minutos
     return output_log + "Tempo em execução: " + std::to_string(hours) + "h "+ std::to_string(minutes) + "min";
 }
 
